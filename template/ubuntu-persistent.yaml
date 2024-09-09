@@ -4,10 +4,10 @@ metadata:
   name: ubuntu-persistent
 spec:
   title: 'ubuntu-persistent'
-  url: ''
-  gitRepo: ''
-  author: 'Sealos'
-  description: 'Ubuntu image with SSH & SFTP'
+  url: 'https://github.com/ripples-alive/ubuntu-persistent'
+  gitRepo: 'https://github.com/ripples-alive/ubuntu-persistent'
+  author: 'ripples'
+  description: 'Ubuntu image with persistent system volumes'
   readme: ''
   icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/ubuntu/ubuntu.png'
   templateType: inline
@@ -27,7 +27,17 @@ spec:
       description: 'save data size (Gi)'
       type: string
       default: '10'
-      required: false
+      required: true
+    CPU_LIMIT:
+      description: 'cpu limit'
+      type: string
+      default: '1'
+      required: true
+    MEMORY_LIMIT:
+      description: 'memory limit (Gi)'
+      type: string
+      default: '1'
+      required: true
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -65,8 +75,8 @@ spec:
               cpu: 100m
               memory: 102Mi
             limits:
-              cpu: 1000m
-              memory: 1024Mi
+              cpu: ${{ inputs.CPU_LIMIT }}
+              memory: ${{ inputs.MEMORY_LIMIT }}Gi
           command: []
           args: []
           ports:
