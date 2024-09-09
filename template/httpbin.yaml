@@ -8,7 +8,7 @@ spec:
   gitRepo: 'https://github.com/postmanlabs/httpbin'
   author: 'ripples'
   description: 'HTTP Request & Response Service'
-  readme: 'https://github.com/postmanlabs/httpbin/blob/master/README.md'
+  readme: 'https://raw.githubusercontent.com/postmanlabs/httpbin/master/README.md'
   icon: 'https://httpbin.org/static/favicon.ico'
   templateType: inline
   categories:

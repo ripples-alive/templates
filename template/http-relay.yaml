@@ -8,7 +8,7 @@ spec:
   gitRepo: 'https://github.com/alpine-docker/multi-arch-docker-images/tree/master/socat'
   author: 'ripples'
   description: 'Multipurpose relay for binary protocols'
-  readme: 'https://github.com/alpine-docker/multi-arch-docker-images/blob/master/socat/README.md'
+  readme: 'https://raw.githubusercontent.com/alpine-docker/multi-arch-docker-images/master/socat/README.md'
   icon: 'https://pkgs.alpinelinux.org/assets/favicon.ico'
   templateType: inline
   categories:

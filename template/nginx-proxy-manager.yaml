@@ -8,7 +8,7 @@ spec:
   gitRepo: 'https://github.com/NginxProxyManager/nginx-proxy-manager'
   author: 'ripples'
   description: 'Nginx Proxy Manager - Expose your services easily and securely'
-  readme: 'https://github.com/NginxProxyManager/nginx-proxy-manager/blob/develop/README.md'
+  readme: 'https://raw.githubusercontent.com/NginxProxyManager/nginx-proxy-manager/develop/README.md'
   icon: 'https://nginxproxymanager.com/icon.png'
   templateType: inline
   categories:

@@ -8,7 +8,7 @@ spec:
   gitRepo: 'https://github.com/openspeedtest/Docker-Image'
   author: 'ripples'
   description: 'SpeedTest by OpenSpeedTest™ - Free & Open-Source HTML5 Network Performance Estimation Tool.'
-  readme: 'https://github.com/openspeedtest/Docker-Image/blob/main/README.md'
+  readme: 'https://raw.githubusercontent.com/openspeedtest/Docker-Image/main/README.md'
   icon: 'https://open.cachefly.net/assets/images/icons/favicon-32x32.png'
   templateType: inline
   categories:

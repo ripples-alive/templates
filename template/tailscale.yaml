@@ -8,7 +8,7 @@ spec:
   gitRepo: 'https://github.com/tailscale/tailscale'
   author: 'ripples'
   description: 'Tailscale - Private WireGuard® networks made easy'
-  readme: 'https://github.com/tailscale/tailscale/blob/main/README.md'
+  readme: 'https://raw.githubusercontent.com/tailscale/tailscale/main/README.md'
   icon: 'https://tailscale.com/favicon.png'
   templateType: inline
   categories:
