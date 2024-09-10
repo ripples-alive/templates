@@ -18,11 +18,6 @@ spec:
       type: string
       value: ubuntu-persistent-${{ random(8) }}
   inputs:
-    ROOT_PASSWORD:
-      description: 'root password'
-      type: string
-      default: ''
-      required: true
     VOLUME_SIZE:
       description: 'save data size (Gi)'
       type: string
@@ -67,9 +62,7 @@ spec:
       containers:
         - name: ${{ defaults.app_name }}
           image: dqwang/ubuntu-persistent:24.04
-          env:
-            - name: ROOT_PASSWORD
-              value: ${{ inputs.ROOT_PASSWORD }}
+          env: []
           resources:
             requests:
               cpu: 100m
