@@ -8,7 +8,7 @@ spec:
   gitRepo: 'https://github.com/ripples-alive/ubuntu-persistent'
   author: 'ripples'
   description: 'Ubuntu image with persistent system volumes'
-  readme: ''
+  readme: 'https://raw.githubusercontent.com/ripples-alive/templates/main/template/ubuntu-persistent/README.md'
   icon: 'https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/ubuntu/ubuntu.png'
   templateType: inline
   categories:
@@ -59,6 +59,7 @@ spec:
         app: ${{ defaults.app_name }}
     spec:
       terminationGracePeriodSeconds: 10
+      automountServiceAccountToken: false
       containers:
         - name: ${{ defaults.app_name }}
           image: dqwang/ubuntu-persistent:24.04
