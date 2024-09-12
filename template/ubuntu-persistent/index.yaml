@@ -39,7 +39,7 @@ kind: StatefulSet
 metadata:
   name: ${{ defaults.app_name }}
   annotations:
-    originImageName: dqwang/ubuntu-persistent:24.04
+    originImageName: ripples/ubuntu-persistent:24.04
     deploy.cloud.sealos.io/minReplicas: '1'
     deploy.cloud.sealos.io/maxReplicas: '1'
   labels:
@@ -62,7 +62,7 @@ spec:
       automountServiceAccountToken: false
       containers:
         - name: ${{ defaults.app_name }}
-          image: dqwang/ubuntu-persistent:24.04
+          image: ripples/ubuntu-persistent:24.04
           env: []
           resources:
             requests:
