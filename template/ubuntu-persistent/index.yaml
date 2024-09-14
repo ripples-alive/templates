@@ -18,11 +18,6 @@ spec:
       type: string
       value: ubuntu-persistent-${{ random(8) }}
   inputs:
-    VOLUME_SIZE:
-      description: 'save data size (Gi)'
-      type: string
-      default: '10'
-      required: true
     CPU_LIMIT:
       description: 'cpu limit'
       type: string
@@ -72,7 +67,7 @@ spec:
             limits:
               cpu: ${{ inputs.CPU_LIMIT }}
               memory: ${{ inputs.MEMORY_LIMIT }}Gi
-              ephemeral-storage: ${{ inputs.VOLUME_SIZE }}Gi
+              ephemeral-storage: 10Gi
           command: []
           args: []
           ports:
@@ -104,14 +99,14 @@ spec:
     - metadata:
         annotations:
           path: /data
-          value: '${{ inputs.VOLUME_SIZE }}'
+          value: '10'
         name: vn-appvn-data
       spec:
         accessModes:
           - ReadWriteOnce
         resources:
           requests:
-            storage: ${{ inputs.VOLUME_SIZE }}Gi
+            storage: 10Gi
 ---
 apiVersion: v1
 kind: Service
