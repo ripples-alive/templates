@@ -81,39 +81,86 @@ spec:
             - containerPort: 22
           imagePullPolicy: Always
           volumeMounts:
-            - name: vn-appvn-data
-              mountPath: /data
-            - name: vn-appvn-data
+            - name: vn-appvn-etc
               mountPath: /etc
-              subPath: etc
-            - name: vn-appvn-data
+            - name: vn-appvn-home
               mountPath: /home
-              subPath: home
-            - name: vn-appvn-data
+            - name: vn-appvn-opt
               mountPath: /opt
-              subPath: opt
-            - name: vn-appvn-data
+            - name: vn-appvn-root
               mountPath: /root
-              subPath: root
-            - name: vn-appvn-data
+            - name: vn-appvn-usr
               mountPath: /usr
-              subPath: usr
-            - name: vn-appvn-data
+            - name: vn-appvn-var
               mountPath: /var
-              subPath: var
       volumes: []
   volumeClaimTemplates:
     - metadata:
         annotations:
-          path: /data
-          value: '10'
-        name: vn-appvn-data
+          path: /etc
+          value: '1'
+        name: vn-appvn-etc
       spec:
         accessModes:
           - ReadWriteOnce
         resources:
           requests:
-            storage: 10Gi
+            storage: 1Gi
+    - metadata:
+        annotations:
+          path: /home
+          value: '1'
+        name: vn-appvn-home
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+    - metadata:
+        annotations:
+          path: /opt
+          value: '1'
+        name: vn-appvn-opt
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+    - metadata:
+        annotations:
+          path: /root
+          value: '1'
+        name: vn-appvn-root
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+    - metadata:
+        annotations:
+          path: /usr
+          value: '1'
+        name: vn-appvn-usr
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
+    - metadata:
+        annotations:
+          path: /var
+          value: '1'
+        name: vn-appvn-var
+      spec:
+        accessModes:
+          - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi
 ---
 apiVersion: v1
 kind: Service
