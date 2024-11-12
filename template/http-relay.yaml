@@ -9,7 +9,7 @@ spec:
   author: 'ripples'
   description: 'Multipurpose relay for binary protocols'
   readme: 'https://raw.githubusercontent.com/alpine-docker/multi-arch-docker-images/master/socat/README.md'
-  icon: 'https://pkgs.alpinelinux.org/assets/favicon.ico'
+  icon: 'https://pkgs.alpinelinux.org/static/favicon.ico'
   templateType: inline
   categories:
     - tool
