@@ -16,19 +16,24 @@ spec:
   defaults:
     app_name:
       type: string
-      value: ubuntu-persistent-${{ random(8) }}
+      value: ubuntu-${{ random(8) }}
   inputs:
-    CPU_LIMIT:
+    name:
+      description: 'name'
+      type: string
+      default: 'persistent'
+      required: true
+    cpu_limit:
       description: 'cpu limit'
       type: string
       default: '1'
       required: true
-    MEMORY_LIMIT:
+    memory_limit:
       description: 'memory limit (Gi)'
       type: string
       default: '1'
       required: true
-    SSH_PUBKEY:
+    ssh_pubkey:
       description: 'ssh public key'
       type: string
       default: ''
@@ -37,43 +42,43 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: ${{ defaults.app_name }}
+  name: ${{ inputs.name }}-${{ defaults.app_name }}
   annotations:
     originImageName: ripples/ubuntu-persistent:24.04
     deploy.cloud.sealos.io/minReplicas: '1'
     deploy.cloud.sealos.io/maxReplicas: '1'
   labels:
-    cloud.sealos.io/app-deploy-manager: ${{ defaults.app_name }}
-    app: ${{ defaults.app_name }}
+    cloud.sealos.io/app-deploy-manager: ${{ inputs.name }}-${{ defaults.app_name }}
+    app: ${{ inputs.name }}-${{ defaults.app_name }}
 spec:
   replicas: 1
   revisionHistoryLimit: 1
   minReadySeconds: 10
-  serviceName: ${{ defaults.app_name }}
+  serviceName: ${{ inputs.name }}-${{ defaults.app_name }}
   selector:
     matchLabels:
-      app: ${{ defaults.app_name }}
+      app: ${{ inputs.name }}-${{ defaults.app_name }}
   template:
     metadata:
       labels:
-        app: ${{ defaults.app_name }}
+        app: ${{ inputs.name }}-${{ defaults.app_name }}
     spec:
       terminationGracePeriodSeconds: 10
       automountServiceAccountToken: false
       containers:
-        - name: ${{ defaults.app_name }}
+        - name: ${{ inputs.name }}-${{ defaults.app_name }}
           image: ripples/ubuntu-persistent:24.04
           env:
             - name: SSH_PUBKEY
-              value: ${{ inputs.SSH_PUBKEY }}
+              value: ${{ inputs.ssh_pubkey }}
           resources:
             requests:
               cpu: 100m
               memory: 102Mi
               ephemeral-storage: 1Gi
             limits:
-              cpu: ${{ inputs.CPU_LIMIT }}
-              memory: ${{ inputs.MEMORY_LIMIT }}Gi
+              cpu: ${{ inputs.cpu_limit }}
+              memory: ${{ inputs.memory_limit }}Gi
               ephemeral-storage: 10Gi
           command: []
           args: []
@@ -165,13 +170,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ${{ defaults.app_name }}
+  name: ${{ inputs.name }}-${{ defaults.app_name }}
   labels:
-    cloud.sealos.io/app-deploy-manager: ${{ defaults.app_name }}
+    cloud.sealos.io/app-deploy-manager: ${{ inputs.name }}-${{ defaults.app_name }}
 spec:
   type: NodePort
   ports:
     - port: 22
       targetPort: 22
   selector:
-    app: ${{ defaults.app_name }}
+    app: ${{ inputs.name }}-${{ defaults.app_name }}
